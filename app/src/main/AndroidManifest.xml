@@ -1,0 +1,52 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sbb.dqsjcse">
+
+    <application
+        android:name=".DqsjApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.NoTitleBar">
+        <meta-data android:value="5798d631e0f55a78280013ca" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="h_home" android:name="UMENG_CHANNEL"/>
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity android:name=".ui.LodingActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.HomeActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ui.LoginActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ui.AddMemberActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ui.UpMemberActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ui.SettingActivity"
+            android:label="@string/app_name">
+        </activity>
+    </application>
+
+    <uses-sdk android:minSdkVersion="4"></uses-sdk>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+</manifest>

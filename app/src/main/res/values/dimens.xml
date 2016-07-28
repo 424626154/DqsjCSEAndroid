@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="navbar_h">40dp</dimen>
+    <dimen name="tabbar_h">40dp</dimen>
+    <dimen name="font01">20dp</dimen>
+    <dimen name="font02">16dp</dimen>
+    <dimen name="row01_h">30dp</dimen>
+</resources>

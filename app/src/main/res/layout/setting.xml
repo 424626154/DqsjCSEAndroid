@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_bg02">
+    <include
+        layout="@layout/navigationbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/userlayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row01_h"
+        android:background="@color/color_font01"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:textSize="14dp"
+            android:textColor="@color/color_font02"
+            android:text ="用户名:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/user"
+            android:textSize="14dp"
+            android:textColor="@color/color_font03"
+            android:text ="username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/nouserlayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row01_h"
+            android:paddingLeft="10dp"
+            android:background="@color/color_font01"
+            android:gravity="center_vertical">
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/color_font02"
+                android:text ="未登录,点击登录"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_bg02"/>
+        <RelativeLayout
+            android:id="@+id/beernumlayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row01_h">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row01_h"
+            android:background="@color/color_font01"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/color_font02"
+                android:text ="初始啤酒数量:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/beernum"
+                android:textSize="14dp"
+                android:textColor="@color/color_font03"
+                android:text ="beernum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/upbeernum"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textSize="14dp"
+            android:textColor="@color/color_font02"
+            android:text ="修改"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_bg02"/>
+        <RelativeLayout
+            android:id="@+id/deductionlayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row01_h">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row01_h"
+                android:background="@color/color_font01"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="@color/color_font02"
+                    android:text ="扣除啤酒数量:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/deduction"
+                    android:textSize="14dp"
+                    android:textColor="@color/color_font03"
+                    android:text ="deduction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/updeduction"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textSize="14dp"
+                android:textColor="@color/color_font02"
+                android:text ="修改"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/logofflayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/logoff"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="退出登录"
+                android:textColor="@color/color_font01"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:background="@drawable/home_item_but"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
