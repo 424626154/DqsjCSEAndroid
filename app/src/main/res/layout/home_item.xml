@@ -2,18 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/home_item_bg">
+    android:background="@drawable/home_item">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:orientation="horizontal">
         <TextView
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font02"
             android:text ="会员帐号:"
             android:layout_width="wrap_content"
@@ -23,7 +26,7 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/account"
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font03"
             android:text ="会员帐号"
             android:layout_width="match_parent"
@@ -31,10 +34,10 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:orientation="horizontal">
         <TextView
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font02"
             android:text ="会员姓名:"
             android:layout_width="wrap_content"
@@ -44,19 +47,18 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/name"
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font03"
             android:text ="会员姓名"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:orientation="horizontal">
         <TextView
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font02"
             android:text ="会员手机:"
             android:layout_width="wrap_content"
@@ -66,7 +68,7 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/phone"
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font03"
             android:text ="会员姓名"
             android:layout_width="match_parent"
@@ -74,10 +76,10 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:orientation="horizontal">
         <TextView
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font02"
             android:text ="啤酒数量:"
             android:layout_width="wrap_content"
@@ -87,95 +89,11 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/beernum"
-            android:textSize="14dp"
+            android:textSize="@dimen/font02"
             android:textColor="@color/color_font03"
             android:text ="会员姓名"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal">
-    <Button
-        android:id="@+id/update"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:text="修改"
-        android:textColor="@color/color_font01"
-        android:textSize="12dp"
-        android:gravity="center"
-        android:background="@drawable/home_item_but"/>
-        <View
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:text="删除"
-        android:textColor="@color/color_font01"
-        android:textSize="12dp"
-        android:gravity="center"
-        android:background="@drawable/home_item_but"/>
-        </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/ded"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:text="-"
-            android:textColor="@color/color_font01"
-            android:textSize="12dp"
-            android:gravity="center"
-            android:background="@drawable/home_item_but"/>
-        <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="30dp">
-            <TextView
-                android:id="@+id/num"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:text=""
-                android:textColor="@color/color_font02"
-                android:background="@color/color_font01"/>
-            <View
-                android:layout_alignParentBottom="true"
-                android:layout_width="80dp"
-                android:layout_height="1dp"
-                android:background="@color/color_font02"/>
-        </RelativeLayout>
-        <Button
-            android:id="@+id/add"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:text="+"
-            android:textColor="@color/color_font01"
-            android:textSize="12dp"
-            android:gravity="center"
-            android:background="@drawable/home_item_but"/>
-        <View
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/deduction"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:text="扣除"
-        android:textColor="@color/color_font01"
-        android:textSize="12dp"
-        android:gravity="center"
-        android:background="@drawable/home_item_but"/>
-        </LinearLayout>
 </LinearLayout>
 </RelativeLayout>

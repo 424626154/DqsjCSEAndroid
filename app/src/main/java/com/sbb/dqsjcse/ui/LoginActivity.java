@@ -32,7 +32,6 @@ public class LoginActivity extends BaseActivity{
     private Button login;
     public String  usernameStr;
     public String passwordStr;
-    public ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +50,6 @@ public class LoginActivity extends BaseActivity{
                 onLogin();
             }
         });
-
-        dialog = new ProgressDialog(LoginActivity.this);// 创建ProgressDialog对象
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);// 设置进度条风格，风格为圆形，旋转的
-        dialog.setIndeterminate(false);
-        dialog.setCancelable(true); // 设置ProgressDialog 是否可以按退回键取消
     }
 
     public void onLogin(){

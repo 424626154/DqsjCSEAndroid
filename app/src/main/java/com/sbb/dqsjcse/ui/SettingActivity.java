@@ -9,14 +9,18 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sbb.dqsjcse.R;
+import com.sbb.dqsjcse.config.LockConfig;
 import com.sbb.dqsjcse.config.ReceiverConfig;
 import com.sbb.dqsjcse.util.SharedUtil;
 
@@ -24,7 +28,7 @@ import com.sbb.dqsjcse.util.SharedUtil;
  * Created by bingbing on 16/7/26.
  */
 public class SettingActivity extends BaseActivity {
-    private Button backBut;
+    private RelativeLayout backBut;
     private TextView titleTV;
     private LinearLayout userlayout;
     private LinearLayout nouserlayout;
@@ -35,8 +39,6 @@ public class SettingActivity extends BaseActivity {
     private TextView deductionTV;
     private RelativeLayout logofflayout;
     private Button logoffBut;
-    private EditText beernumET;
-    private EditText deductionET;
     private LoginContactReceiver loginContactReceiver ;
 
     protected class LoginContactReceiver extends BroadcastReceiver {
@@ -64,7 +66,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     public void initUI(){
-        backBut = (Button) findViewById(R.id.back);
+        backBut = (RelativeLayout) findViewById(R.id.back);
         titleTV = (TextView) findViewById(R.id.title);
         userlayout = (LinearLayout)findViewById(R.id.userlayout);
         nouserlayout = (LinearLayout)findViewById(R.id.nouserlayout);
@@ -78,7 +80,7 @@ public class SettingActivity extends BaseActivity {
         backBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();;
+                finish();
             }
         });
         titleTV.setText("设置");
@@ -98,8 +100,6 @@ public class SettingActivity extends BaseActivity {
                 showShortTost("退出成功");
             }
         });
-        beernumET = new EditText(SettingActivity.this);
-        beernumET.setInputType(InputType.TYPE_CLASS_NUMBER);
         beernumlayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -107,35 +107,9 @@ public class SettingActivity extends BaseActivity {
                             goLogin();
                             return;
                         }
-                        if(TextUtils.isEmpty(beernumET.getText())){
-                            showShortTost("参数错误");
-                            return;
-                        }
-                        new AlertDialog.Builder(SettingActivity.this).setTitle("请输入会员默认添加啤酒数量").setIcon(
-                                R.mipmap.ic_launcher).setView(beernumET).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                int beernum = 0;
-                                try {
-                                    beernum = Integer.valueOf(beernumET.getText().toString());
-                                } catch (NumberFormatException e) {
-                                    e.printStackTrace();
-                                    beernum = 0;
-                                }
-                                if(beernum > 0 ){
-                                    SharedUtil.setBeerNum(SettingActivity.this,beernum);
-                                    refreshData();
-                                    showShortTost("设置成功");
-                                }else{
-                                    showShortTost("设置失败");
-                                }
-                            }
-                        })
-                                .setNegativeButton("取消", null).show();
+                        showPopupBeerNum();
                     }
                 });
-        deductionET = new EditText(SettingActivity.this);
-        deductionET.setInputType(InputType.TYPE_CLASS_NUMBER);
         deductionlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,31 +117,7 @@ public class SettingActivity extends BaseActivity {
                     goLogin();
                     return;
                 }
-                if (TextUtils.isEmpty(deductionET.getText())){
-                    showShortTost("参数错误");
-                    return;
-                }
-                new AlertDialog.Builder(SettingActivity.this).setTitle("请输入会员默认添加啤酒数量").setIcon(
-                        R.mipmap.ic_launcher).setView(deductionET).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        int deduction = 0;
-                        try {
-                            deduction = Integer.valueOf(deductionET.getText().toString());
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                            deduction = 0;
-                        }
-                        if(deduction > 0 ){
-                            SharedUtil.setDeduction(SettingActivity.this,deduction);
-                            refreshData();
-                            showShortTost("设置成功");
-                        }else{
-                            showShortTost("设置失败");
-                        }
-                    }
-                })
-                        .setNegativeButton("取消", null).show();
+                showPopupDed();
             }
         });
     }
@@ -175,14 +125,14 @@ public class SettingActivity extends BaseActivity {
         if(userlayout != null&&nouserlayout != null&& logofflayout != null){
             if(SharedUtil.getIsLogin(SettingActivity.this)){
                 userlayout.setVisibility(View.VISIBLE);
-                nouserlayout.setVisibility(View.INVISIBLE);
+                nouserlayout.setVisibility(View.GONE);
                 logofflayout.setVisibility(View.VISIBLE);
                 if (userTV != null){
                     userTV.setText(SharedUtil.getUserName(SettingActivity.this));
                 }
 
             }else{
-                userlayout.setVisibility(View.INVISIBLE);
+                userlayout.setVisibility(View.GONE);
                 nouserlayout.setVisibility(View.VISIBLE);
                 logofflayout.setVisibility(View.INVISIBLE);
             }
@@ -199,5 +149,124 @@ public class SettingActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.setClass(SettingActivity.this,LoginActivity.class);
         startActivity(intent);
+    }
+
+
+    public void showPopupBeerNum(){
+        View contentView = LayoutInflater.from(SettingActivity.this).inflate(
+                R.layout.popup_set, null);
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT, true);
+        popupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
+        popupWindow.showAtLocation(findViewById(R.id.main), Gravity.RIGHT|Gravity.BOTTOM, 0, 0);
+        TextView pop_title = (TextView)contentView.findViewById(R.id.pop_title);
+        pop_title.setText("修改会员默认添加啤酒数量");
+        TextView pop_tips = (TextView)contentView.findViewById(R.id.pop_tips);
+        pop_tips.setText("请输入默认添加啤酒数量");
+        final EditText pop_num = (EditText)contentView.findViewById(R.id.pop_num);
+        pop_num.setText(SharedUtil.getBeerNum(SettingActivity.this)+"");
+        pop_num.setSelection(pop_num.getText().toString().length());
+        Button pop_cancel = (Button) contentView.findViewById(R.id.pop_cancel);
+        pop_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null != popupWindow && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                }
+            }
+        });
+        Button pop_ok = (Button) contentView.findViewById(R.id.pop_ok);
+        pop_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int deduction = 0;
+                try {
+                    deduction = Integer.valueOf(pop_num.getText().toString());
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    deduction = 0;
+                }
+                if(deduction > 0 ){
+                    SharedUtil.setBeerNum(SettingActivity.this,deduction);
+                    refreshData();
+                    showShortTost("设置成功");
+                }else{
+                    showShortTost("设置失败");
+                }
+
+                if(null != popupWindow && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                }
+            }
+        });
+        RelativeLayout popup =  (RelativeLayout) contentView.findViewById(R.id.popup);
+        popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null != popupWindow && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                }
+            }
+        });
+    }
+
+    public void showPopupDed(){
+        View contentView = LayoutInflater.from(SettingActivity.this).inflate(
+                R.layout.popup_set, null);
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT, true);
+        popupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
+        popupWindow.showAtLocation(findViewById(R.id.main), Gravity.RIGHT|Gravity.BOTTOM, 0, 0);
+        TextView pop_title = (TextView)contentView.findViewById(R.id.pop_title);
+        pop_title.setText("修改扣除啤酒数量");
+        TextView pop_tips = (TextView)contentView.findViewById(R.id.pop_tips);
+        pop_tips.setText("请输入扣除啤酒数量");
+        final EditText pop_num = (EditText)contentView.findViewById(R.id.pop_num);
+        pop_num.setText(SharedUtil.getDeduction(SettingActivity.this)+"");
+        pop_num.setSelection(pop_num.getText().toString().length());
+        Button pop_cancel = (Button) contentView.findViewById(R.id.pop_cancel);
+        pop_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null != popupWindow && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                }
+            }
+        });
+        Button pop_ok = (Button) contentView.findViewById(R.id.pop_ok);
+        pop_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int deduction = 0;
+                try {
+                    deduction = Integer.valueOf(pop_num.getText().toString());
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    deduction = 0;
+                }
+                if(deduction > 0 ){
+                    SharedUtil.setDeduction(SettingActivity.this,deduction);
+                    refreshData();
+                    showShortTost("设置成功");
+                }else{
+                    showShortTost("设置失败");
+                }
+
+                if(null != popupWindow && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                }
+            }
+        });
+        RelativeLayout popup =  (RelativeLayout) contentView.findViewById(R.id.popup);
+        popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(null != popupWindow && popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                }
+            }
+        });
     }
 }

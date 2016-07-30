@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:orientation="vertical"
     android:background="@color/color_bg02">
     <include
@@ -16,7 +17,7 @@
     <LinearLayout
         android:id="@+id/userlayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/row01_h"
+        android:layout_height="@dimen/row03_h"
         android:background="@color/color_font01"
         android:paddingLeft="10dp"
         android:gravity="center_vertical">
@@ -55,13 +56,16 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/color_bg02"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
         <RelativeLayout
             android:id="@+id/beernumlayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/row01_h">
+            android:layout_height="@dimen/row03_h">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/row01_h"
+            android:layout_height="@dimen/row03_h"
             android:background="@color/color_font01"
             android:paddingLeft="10dp"
             android:gravity="center_vertical">
@@ -100,10 +104,10 @@
         <RelativeLayout
             android:id="@+id/deductionlayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/row01_h">
+            android:layout_height="@dimen/row03_h">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/row01_h"
+                android:layout_height="@dimen/row03_h"
                 android:background="@color/color_font01"
                 android:paddingLeft="10dp"
                 android:gravity="center_vertical">
@@ -145,12 +149,12 @@
             <Button
                 android:id="@+id/logoff"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/row03_h"
                 android:text="退出登录"
                 android:textColor="@color/color_font01"
-                android:textSize="12dp"
+                android:textSize="16dp"
                 android:gravity="center"
-                android:background="@drawable/home_item_but"/>
+                android:background="@drawable/comm_but01"/>
         </RelativeLayout>
     </LinearLayout>
 

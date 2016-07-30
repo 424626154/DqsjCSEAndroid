@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -25,14 +27,13 @@ import com.sbb.dqsjcse.util.SharedUtil;
  * Created by bingbing on 16/7/25.
  */
 public class AddMemberActivity extends BaseActivity {
-    private Button backBut;
+    private RelativeLayout backBut;
     private TextView titleTV;
     private EditText accountET;
     private EditText nameET;
     private EditText phoneET;
     private EditText beernumET;
     private Button addBut;
-    private ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class AddMemberActivity extends BaseActivity {
         initUI();
     }
     public void initUI(){
-        backBut = (Button) findViewById(R.id.back);
+        backBut = (RelativeLayout)findViewById(R.id.back);
         titleTV = (TextView) findViewById(R.id.title);
         accountET = (EditText)findViewById(R.id.account);
         nameET = (EditText)findViewById(R.id.name);
@@ -60,10 +61,7 @@ public class AddMemberActivity extends BaseActivity {
                 addMember();
             }
         });
-        dialog = new ProgressDialog(AddMemberActivity.this);// 创建ProgressDialog对象
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);// 设置进度条风格，风格为圆形，旋转的
-        dialog.setIndeterminate(false);
-        dialog.setCancelable(true); // 设置ProgressDialog 是否可以按退回键取消
+
         beernumET.setText(SharedUtil.getBeerNum(AddMemberActivity.this)+"");
     }
 

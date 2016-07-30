@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawerlayout"
+    android:id="@+id/home"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <LinearLayout
@@ -10,8 +10,29 @@
         android:layout_height="match_parent"
         android:background="@color/color_bg02"
         android:orientation="vertical"
-        android:paddingTop="@dimen/navbar_h"
-        android:paddingBottom="@dimen/tabbar_h">
+        android:paddingTop="@dimen/navbar_h">
+        <RelativeLayout
+            android:id="@+id/timeout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffeeee">
+            <ImageView
+                android:id="@+id/timeout_img"
+                android:layout_marginLeft="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/msg_state_fail_resend_pressed"/>
+            <TextView
+                android:layout_toRightOf="@id/timeout_img"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="无法连接到服务器"/>
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -28,7 +49,7 @@
                 android:textColor="@color/color_font01"
                 android:textSize="12dp"
                 android:gravity="center"
-                android:background="@drawable/home_item_but"/>
+                android:background="@drawable/comm_but01"/>
             <RelativeLayout
                 android:layout_toLeftOf="@id/search"
                 android:layout_width="match_parent"
@@ -50,11 +71,20 @@
                     android:layout_alignParentBottom="true"/>
             </RelativeLayout>
         </RelativeLayout>
-        <ListView
-            android:id="@+id/listview"
-            android:background="@color/color_bg02"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/id_swipe_ly"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/listview"
+                android:background="@color/color_bg02"
+                android:divider="#00000000"
+                android:dividerHeight="0dip"
+                android:listSelector="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/left"
@@ -83,20 +113,17 @@
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tabbar_h"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/comm_but03"
         android:layout_alignParentBottom="true"
-        android:background="@color/color_bg01">
-        <TextView
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp">
+        <Button
             android:id="@+id/add"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:text="添加会员"
-            android:textSize="@dimen/font01"
-            android:textColor="@color/color_font01"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"/>
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/add_member_but"/>
     </RelativeLayout>
 </RelativeLayout>

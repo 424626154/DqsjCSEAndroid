@@ -57,12 +57,6 @@ public class HomeAdapter extends BaseAdapter{
             holder.nameView = (TextView)convertView.findViewById(R.id.name);
             holder.phoneView = (TextView)convertView.findViewById(R.id.phone);
             holder.beernumView = (TextView)convertView.findViewById(R.id.beernum);
-            holder.updateBut = (Button) convertView.findViewById(R.id.update);
-            holder.deleteBut = (Button)convertView.findViewById(R.id.delete);
-            holder.deductionBut = (Button)convertView.findViewById(R.id.deduction);
-            holder.numET = (TextView) convertView.findViewById(R.id.num);
-            holder.addBut = (Button) convertView.findViewById(R.id.add);
-            holder.dedBut = (Button) convertView.findViewById(R.id.ded);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder)convertView.getTag();
@@ -72,45 +66,6 @@ public class HomeAdapter extends BaseAdapter{
         holder.nameView.setText(member.name);
         holder.phoneView.setText(member.phone);
         holder.beernumView.setText(member.beernum+"");
-        holder.numET.setText(member.deduction+"");
-        holder.updateBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.toUpMember(member);
-            }
-        });
-        holder.deleteBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.requestDeleteMember(member.mid);
-            }
-        });
-        holder.deductionBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.onDeduction(member);
-            }
-        });
-        holder.addBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                member.deduction ++;
-                if(member.deduction > member.beernum){
-                    member.deduction = (int)member.beernum;
-                }
-                notifyDataSetChanged();
-            }
-        });
-        holder.dedBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                member.deduction --;
-                if(member.deduction < 0){
-                    member.deduction = 0;
-                }
-                notifyDataSetChanged();
-            }
-        });
         return convertView;
     }
     public static class ViewHolder {
@@ -118,12 +73,6 @@ public class HomeAdapter extends BaseAdapter{
         public TextView nameView;
         public TextView phoneView;
         public TextView beernumView;
-        public Button updateBut;
-        public Button deleteBut;
-        public Button deductionBut;
-        public TextView numET;
-        public Button dedBut;
-        public Button addBut;
 
 
     }

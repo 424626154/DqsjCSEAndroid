@@ -11,6 +11,7 @@ public class SharedUtil {
     public static final String IS_LOGIN = "is_login";
     public static final String BEERNUM = "beernum";
     public static final String DEDUCTION = "deduction";
+    public static final String LOCK = "lock";
     public static void saveUserName(Context context,String username){
         SharedPrefsUtil.putValue(context,DQSJ_CSE,USER_NAME,username);
     }
@@ -26,13 +27,20 @@ public class SharedUtil {
     public static void setBeerNum(Context context,long beernum){
         SharedPrefsUtil.putValue(context,DQSJ_CSE,BEERNUM,beernum);
     }
-    public static int getBeerNum(Context context){
-        return SharedPrefsUtil.getValue(context,DQSJ_CSE,BEERNUM,500);
+    public static long getBeerNum(Context context){
+        return SharedPrefsUtil.getValue(context,DQSJ_CSE,BEERNUM,(long)500);
     }
     public static void setDeduction(Context context,long beernum){
         SharedPrefsUtil.putValue(context,BEERNUM,DEDUCTION,beernum);
     }
-    public static int getDeduction(Context context){
-        return SharedPrefsUtil.getValue(context,BEERNUM,DEDUCTION,1);
+    public static long getDeduction(Context context){
+        return SharedPrefsUtil.getValue(context,BEERNUM,DEDUCTION,(long)1);
+    }
+
+    public static boolean isLock(Context context){
+        return SharedPrefsUtil.getValue(context,BEERNUM,LOCK,true);
+    }
+    public static void setLock(Context context,Boolean lock){
+        SharedPrefsUtil.putValue(context,BEERNUM,LOCK,lock);
     }
 }

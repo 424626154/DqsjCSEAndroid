@@ -5,4 +5,6 @@
     <dimen name="font01">20dp</dimen>
     <dimen name="font02">16dp</dimen>
     <dimen name="row01_h">30dp</dimen>
+    <dimen name="row02_h">10dp</dimen>
+    <dimen name="row03_h">40dp</dimen>
 </resources>

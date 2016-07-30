@@ -179,9 +179,9 @@
                 android:layout_height="30dp"
                 android:text="修改"
                 android:textColor="@color/color_font01"
-                android:textSize="12dp"
+                android:textSize="16dp"
                 android:gravity="center"
-                android:background="@drawable/home_item_but"/>
+                android:background="@drawable/comm_but01"/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
